@@ -21,7 +21,9 @@ routes.post('/feedbacks', async (req, res) => {
 	// o "type: type," pode ser escrito como: "type," o "comment: comment," pode ser escrito como: "comment," e o "screenshot: screenshot" pode ser escrito como: "screenshot"
 
 	const { type, comment, screenshot } = req.body;
-	const feedback = 
+	const feedback = await prisma.feedback.create({
+        data: { type, comment, screenshot },
+    })
 	await transport.sendMail({
 		from: 'Equipe Feedback <oi@feedback.com>',
 		to: 'vitor <vitor93gs@gmail.com>',
