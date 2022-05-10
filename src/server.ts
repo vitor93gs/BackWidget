@@ -8,7 +8,7 @@ app.use(express.json()); // get - buscar informaçoes , post - cadastrar informa
 app.use(routes);
 
 app.listen(3333, () => {
-	console.log('Hello World');
+	console.log('Server up and running on port 3333');
 });
 
 // SQLite
