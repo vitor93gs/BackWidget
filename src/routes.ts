@@ -22,8 +22,8 @@ routes.post('/feedbacks', async (req, res) => {
 
 	const { type, comment, screenshot } = req.body;
 	const feedback = await prisma.feedback.create({
-        data: { type, comment, screenshot },
-    })
+		data: { type, comment, screenshot },
+	});
 	await transport.sendMail({
 		from: 'Equipe Feedback <oi@feedback.com>',
 		to: 'vitor <vitor93gs@gmail.com>',
@@ -32,7 +32,7 @@ routes.post('/feedbacks', async (req, res) => {
 			`<div style="font-family: sans-serif; font-size: 16px; color: #111">`,
 			`<p>Tipo do feeback: ${type}</p>`,
 			`<p>Comentário: ${comment}</p>`,
-			`<p>Screenshot: ${screenshot}</p>`,
+			screenshot ? `<img src="${screenshot}" alt="screenshot" />` : '',
 			`</div>`,
 		].join('\n'),
 	});
